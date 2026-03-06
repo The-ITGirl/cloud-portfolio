@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tamara | Cloud Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.1);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2933;
+      --radius-xl: 1.5rem;
+      --radius-lg: 0.9rem;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --shadow-chip: 0 6px 18px rgba(15, 23, 42, 0.7);
+      --transition-fast: 150ms ease-out;
+      --transition-med: 220ms ease;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0.75rem;
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e5e7eb, #4f46e5 65%, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.35),
+        0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .logo-text-main {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    nav a {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    nav a:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.4);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #4f46e5, #6366f1, #a855f7);
+      color: white;
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      border: none;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .nav-cta span {
+      font-size: 0.95rem;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.7);
+      filter: brightness(1.03);
+    }
+
+    .nav-cta-icon {
+      font-size: 1.1rem;
+      margin-top: 1px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding-right: 0.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem 0.2rem 0.25rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(99, 102, 241, 0.45);
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.3);
+    }
+
+    .pill-label-strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #4f46e5, #818cf8, #e5e7eb);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 36rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .tag-chip {
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+      box-shadow: var(--shadow-chip);
+    }
+
+    .tag-chip span {
+      color: #e5e7eb;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #6366f1, #8b5cf6);
+      color: white;
+      padding: 0.65rem 1.3rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.7);
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        filter var(--transition-med);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1.5px) scale(1.01);
+      box-shadow: 0 22px 55px rgba(79, 70, 229, 0.9);
+      filter: brightness(1.03);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.6rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 1rem;
+      margin-top: 1px;
+    }
+
+    .hero-side {
+      position: relative;
+      min-height: 260px;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 60%);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.4rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .hero-badge span {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-status-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(22, 163, 74, 0.3);
+      color: #bbf7d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.25);
+    }
+
+    .hero-card-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .metric {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+      border-radius: 0.9rem;
+      padding: 0.55rem 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.18rem;
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .metric-tag {
+      font-size: 0.7rem;
+      color: rgba(163, 230, 255, 0.9);
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      gap: 0.75rem;
+    }
+
+    .hero-stack-pill {
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.18rem;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-orbit-circle {
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.25);
+      opacity: 0.6;
+    }
+
+    .hero-orbit-circle:nth-child(1) {
+      width: 88%;
+      height: 70%;
+      top: 14%;
+      left: 6%;
+    }
+
+    .hero-orbit-circle:nth-child(2) {
+      width: 60%;
+      height: 46%;
+      top: 25%;
+      left: 20%;
+    }
+
+    .hero-orbit-node {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #6366f1;
+      box-shadow: 0 0 16px rgba(79, 70, 229, 0.9);
+    }
+
+    .hero-orbit-node:nth-child(3) {
+      top: 18%;
+      left: 26%;
+    }
+
+    .hero-orbit-node:nth-child(4) {
+      bottom: 18%;
+      right: 24%;
+    }
+
+    section {
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      padding: 1.6rem 1.4rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .section-link {
+      font-size: 0.8rem;
+      color: #a5b4fc;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .section-link-icon {
+      font-size: 0.95rem;
+      margin-top: 1px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.3rem;
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 62%);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        border-color var(--transition-med), background var(--transition-med);
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      border-color: rgba(129, 140, 248, 0.8);
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+    }
+
+    .project-label-pill {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .project-label-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #a5b4fc;
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      margin-top: 0.4rem;
+    }
+
+    .project-stack {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .project-tag {
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.7rem;
+      color: #e5e7eb;
+    }
+
+    .project-link {
+      font-size: 0.78rem;
+      color: #a5b4fc;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.18rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
+    }
+
+    .stack-pill {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .timeline {
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.8rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1.6fr 2fr;
+      gap: 0.7rem;
+      padding: 0.45rem 0;
+    }
+
+    .timeline-item:not(:last-child) {
+      border-bottom: 1px dashed rgba(55, 65, 81, 0.6);
+    }
+
+    .timeline-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .timeline-value {
+      color: #e5e7eb;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .contact-pill {
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-icon {
+      font-size: 1rem;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed rgba(55, 65, 81, 0.8);
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+    }
+
+    @media (max-width: 880px) {
+      header {
+        border-radius: 1rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-text {
+        order: 1;
+        padding-right: 0;
+      }
+
+      .hero-side {
+        order: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 1rem;
+      }
+
+      header {
+        padding-inline: 1rem;
+      }
+
+      .hero-card {
+        padding: 1.2rem 1rem 1.3rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      section {
+        padding-inline: 1.1rem;
+      }
+
+      .timeline-item {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">T</div>
+        <div>
+          <div class="logo-text-main">Tamara McGriff</div>
+          <div class="logo-text-sub">Cloud Engineering Projects</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Skills</a>
+        <a href="#about">About</a>
+        <button class="nav-cta" onclick="scrollToContact()">
+          <span>Let’s connect</span>
+          <span class="nav-cta-icon">✉️</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-text">
+          <div class="pill">
+            <div class="pill-dot"></div>
+            <span class="pill-label-strong">Cloud Engineer Student</span>
+            <span>• Building in public</span>
+          </div>
+
+          <h1 class="hero-title">
+            Turning <span>AWS & Cloud</span> fundamentals into real, hands-on projects.
+          </h1>
+
+          <p class="hero-subtitle">
+            I’m Tamara, a cloud engineering student currently enrolled at Keiser University. I'm pursing the 
+            <strong>AWS Solutions Architect Associate Certification</strong>. This site showcases the projects I’m building with AWS services and tracks my technical growth and key milestones as I prepare for a career in cloud engineering.
+          </p>
+
+          <div class="hero-tags">
+            <div class="tag-chip"><span>AWS</span> • Scheduled CCP Exam 12/31/2025</div>
+            <div class="tag-chip"><span>Hands-on</span> labs & projects</div>
+            <div class="tag-chip"><span>Learning</span> in public</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToProjects()">
+              <span>Browse my projects</span>
+              <span class="btn-icon">↓</span>
+            </button>
+            <button class="btn-ghost" onclick="scrollToContact()">
+              <span>Contact</span>
+              <span class="btn-icon">✉️</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-badge">
+                  CURRENT TRACK · <span>AWS SAA-C03</span>
+                </div>
+                <div class="hero-card-title">Cloud Lab Progress</div>
+              </div>
+              <div class="hero-status-pill">
+                <div class="hero-status-dot"></div>
+                Actively learning
+              </div>
+            </div>
+
+            <p class="hero-card-sub">
+              I’m building small, focused labs around core services and then turning
+              them into portfolio-ready projects.
+            </p>
+
+            <div class="hero-metrics">
+              <div class="metric">
+                <div class="metric-label">AWS labs completed</div>
+                <div class="metric-value">1</div>
+                <div class="metric-tag">networking · compute</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Live projects</div>
+                <div class="metric-value">1</div>
+                <div class="metric-tag">S3 · EC2 · CFN</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Goal</div>
+                <div class="metric-value">CLF-02</div>
+                <div class="metric-tag">exam scheduled 02/27/26</div>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <span>Currently focused on VPCs, IAM, and automation.</span>
+              <span class="hero-stack-pill">
+                ⚙️
+                <span>AWS · Linux · Python</span>
+              </span>
+            </div>
+
+            <div class="hero-orbit">
+              <div class="hero-orbit-circle"></div>
+              <div class="hero-orbit-circle"></div>
+              <div class="hero-orbit-node"></div>
+              <div class="hero-orbit-node"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Projects</div>
+            <h2 class="section-title">Cloud labs & solutions</h2>
+            <p class="section-subtitle">
+              A growing collection of small, focused projects as I learn AWS.
+            </p>
+          </div>
+          <div>
+            <button class="section-link" onclick="alert('Edit this section in the HTML to add more projects ✨')">
+              Edit project list
+              <span class="section-link-icon">✏️</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-label-pill">
+              <span class="project-label-dot"></span>
+              Networking · VPC
+            </div>
+            <h3 class="project-title">Multi-AZ VPC with Public & Private Subnets</h3>
+            <p class="project-desc">
+              Designed a custom VPC with public and private subnets across multiple
+              Availability Zones, including route tables, internet gateway, and NAT
+              gateway for outbound-only traffic from private instances.
+            </p>
+            <div class="project-meta">
+              <div class="project-stack">
+                <span class="project-tag">VPC</span>
+                <span class="project-tag">Subnets</span>
+                <span class="project-tag">Routing</span>
+              </div>
+              <a class="project-link" href="#" target="_blank">
+                View notes
+                <span>↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-label-pill">
+              <span class="project-label-dot"></span>
+              Compute · EC2
+            </div>
+            <h3 class="project-title">EC2 Web Server with Security Groups</h3>
+            <p class="project-desc">
+              Launched and configured an EC2 instance as a simple web server,
+              locked down with least-privilege security groups and SSH access
+              from a known IP range only.
+            </p>
+            <div class="project-meta">
+              <div class="project-stack">
+                <span class="project-tag">EC2</span>
+                <span class="project-tag">Security Groups</span>
+                <span class="project-tag">Linux</span>
+              </div>
+              <a class="project-link" href="#" target="_blank">
+                GitHub repo
+                <span>↗</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-label-pill">
+              <span class="project-label-dot"></span>
+              Storage · Automation
+            </div>
+            <h3 class="project-title">Static Site Hosting on S3</h3>
+            <p class="project-desc">
+              Actively hosting this website on S3 with bucket policies, versioning, and
+              CloudFront-ready configuration for future CDN integration.
+            </p>
+            <div class="project-meta">
+              <div class="project-stack">
+                <span class="project-tag">S3</span>
+                <span class="project-tag">Static Hosting</span>
+                <span class="project-tag">IAM</span>
+              </div>
+              <a class="project-link" href="#" target="_blank">
+                Live demo
+                <span>↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- STACK & ABOUT -->
+      <section id="stack">
+        <div class="two-col">
+          <div>
+            <div class="section-kicker">Skills</div>
+            <h2 class="section-title">What I’m working with</h2>
+            <p class="section-subtitle">
+              My stack is evolving as I move through my degree and AWS certs.
+              Here are the tools I’m learning and using in labs.
+            </p>
+
+            <div class="stack-list">
+              <div class="stack-pill">AWS (VPC, EC2, S3, IAM)</div>
+              <div class="stack-pill">Linux basics</div>
+              <div class="stack-pill">Networking fundamentals</div>
+              <div class="stack-pill">CLI & automation</div>
+              <div class="stack-pill">Python (learning)</div>
+              <div class="stack-pill">CloudFormation basics</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-kicker">Journey</div>
+            <h2 class="section-title">Where I’m headed</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-label">Now</div>
+                <div class="timeline-value">
+                  Bachelor’s in Cloud Engineering · Actively studying AWS
+                  Solutions Architect and building projects as I go.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-label">Near-term</div>
+                <div class="timeline-value">
+                  Complete AWS SAA-C03, build more portfolio projects, and land a
+                  cloud-related internship or junior role.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-label">Long-term</div>
+                <div class="timeline-value">
+                  Grow into a Cloud Engineer focused on designing secure,
+                  reliable infrastructure and automation in AWS.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT & CONTACT -->
+      <section id="about">
+        <div class="two-col">
+          <div>
+            <div class="section-kicker">About</div>
+            <h2 class="section-title">A bit about me</h2>
+            <p class="section-subtitle" style="margin-bottom: 0.7rem;">
+              I come from a background in the military and sales, and I found myself beginning to do self-learning within the I.T. field, I’m
+              now fully focused on cloud engineering.
+            </p>
+            <p class="section-subtitle">
+              I care about doing things the right way—understanding concepts,
+              breaking down problems, and practicing until it feels natural.  
+              This site is where I keep track of that growth and show employers
+              what I’m actually building, not just what I’m studying.
+            </p>
+          </div>
+
+          <div id="contact">
+            <div class="section-kicker">Contact</div>
+            <h2 class="section-title">Let’s connect</h2>
+            <p class="section-subtitle" style="margin-bottom: 0.6rem;">
+              Open to internships, entry-level roles, and mentorship in cloud
+              and DevOps.
+            </p>
+
+            <div class="contact-row">
+              <div class="contact-pill">
+                <span class="contact-icon">✉️</span>
+                <span>
+                  <a href="mailto:tamaramcgriff@yahoo.com">
+                    tamaramcgriff@yahoo.com
+                  </a>
+                </span>
+              </div>
+              <div class="contact-pill">
+                <span class="contact-icon">💼</span>
+                <span>
+                  <a href="https://www.linkedin.com/in/tamaramcgriff00" target="_blank">LinkedIn</a>
+                </span>
+              </div>
+              <div class="contact-pill">
+                <span class="contact-icon">💻</span>
+                <span>
+                  <a href="https://github.com/The-ITGirl" target="_blank">GitHub</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Tamara · Built while learning AWS ☁️</div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function scrollToProjects() {
+      document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function scrollToContact() {
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
